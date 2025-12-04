@@ -159,25 +159,34 @@
             };
 
             const handleResponse = (type) => {
-                setSelectedResponse(type);
-                
-                let message = '';
-                switch(type) {
-                    case 'yes':
-                        message = 'Уже видим как ты поёшь Агутина\nи пляшешь под Сердючку!\nДо встречи! 💕';
-                        break;
-                    case 'no':
-                        message = 'Понимаем, Новый год – семейный праздник.\nИ мы рады, что с тобой –\nу нас их две ❤️';
-                        break;
-                    case 'maybe':
-                        message = 'Будем рады тебя видеть.\nСвяжемся по номеру 💕';
-                        break;
-                }
-                
-                setModalMessage(message);
-                setShowModal(true);
-                sendToGoogleSheets(type);
-            };
+    // ПРОВЕРКА: Введено ли имя?
+    const userName = document.getElementById('userNameInput')?.value.trim();
+    
+    if (!userName) {
+        setModalMessage('Сначала введи своё имя или ник! 🙏');
+        setShowModal(true);
+        return;
+    }
+    
+    setSelectedResponse(type);
+    
+    let message = '';
+    switch(type) {
+        case 'yes':
+            message = 'Уже видим как ты поёшь Агутина\nи пляшешь под Сердючку!\nДо встречи! 💕';
+            break;
+        case 'no':
+            message = 'Понимаем, Новый год – семейный праздник.\nИ мы рады, что с тобой –\nу нас их две ❤️';
+            break;
+        case 'maybe':
+            message = 'Будем рады тебя видеть.\nСвяжемся по номеру 💕';
+            break;
+    }
+    
+    setModalMessage(message);
+    setShowModal(true);
+    sendToGoogleSheets(type);
+};
 
             const getModalBorderColor = () => {
                 switch(selectedResponse) {
