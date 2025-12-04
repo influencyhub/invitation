@@ -303,7 +303,7 @@
                             position: absolute;
                             bottom: 12px;
                             right: 10px;
-                            width: 85px;
+                            width: 90px;
                             height: auto;
                         }
 
@@ -392,6 +392,7 @@
 
                         .card-header {
                             text-align: center;
+                            margin-top: 35px;
                             margin-bottom: 20px;
                         }
 
@@ -842,7 +843,7 @@
                             />
 
                             <div className="card-header">
-                                <div className="card-title">HUBBY NEW YEAR</div>
+                                <div className="card-title">HUBBY<br/>NEW YEAR</div>
                                 <div className="card-subtitle">Новогодний корпоратив</div>
                             </div>
 
@@ -918,9 +919,7 @@
                                 <div className="modal-text">{modalMessage}</div>
                                 <button className="modal-close-btn" onClick={() => {
     setShowModal(false);
-    setModalMessage('Спасибо! 💕');
-    setTimeout(() => setShowModal(true), 100);
-    setTimeout(() => setShowModal(false), 2000);
+    setTimeout(() => window.location.reload(), 300);
 }}>
     Закрыть
 </button>
