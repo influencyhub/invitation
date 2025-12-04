@@ -64,8 +64,8 @@
             const [modalMessage, setModalMessage] = useState('');
             const [selectedResponse, setSelectedResponse] = useState(null);
 
-            // ВСТАВЬ СЮДА СВОЙ GOOGLE APPS SCRIPT URL!
-            const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyDiXX0YdlSIuXIVddi45yPejGkRBK-ccHe8ymcZE6hZ_z1g8ilz1_kmB4l1zJiPD7-/exec';
+            // ⚠️ ВСТАВЬ СЮДА СВОЙ GOOGLE APPS SCRIPT URL!
+            const GOOGLE_SCRIPT_URL = 'ВСТАВЬ_СЮДА_URL_ИЗ_GOOGLE_SHEETS';
 
             const handleTouchStart = (e) => {
                 if (stage === 'initial') {
@@ -78,13 +78,13 @@
                     const currentY = e.touches[0].clientY;
                     const diff = startY - currentY;
                     if (diff > 0) {
-                        setSwipeY(Math.min(diff, 300));
+                        setSwipeY(Math.min(diff, 250));
                     }
                 }
             };
 
             const handleTouchEnd = () => {
-                if (stage === 'initial' && swipeY > 220) {
+                if (stage === 'initial' && swipeY > 180) {
                     setStage('swiping');
                     setTimeout(() => setStage('doorOpen'), 900);
                     setTimeout(() => setStage('cardFallen'), 1800);
@@ -105,13 +105,13 @@
                 if (stage === 'initial' && startY) {
                     const diff = startY - e.clientY;
                     if (diff > 0) {
-                        setSwipeY(Math.min(diff, 300));
+                        setSwipeY(Math.min(diff, 250));
                     }
                 }
             };
 
             const handleMouseUp = () => {
-                if (stage === 'initial' && swipeY > 220) {
+                if (stage === 'initial' && swipeY > 180) {
                     setStage('swiping');
                     setTimeout(() => setStage('doorOpen'), 900);
                     setTimeout(() => setStage('cardFallen'), 1800);
@@ -123,6 +123,13 @@
             };
 
             const sendToGoogleSheets = async (response) => {
+                // ПРОВЕРКА URL
+                if (GOOGLE_SCRIPT_URL === 'ВСТАВЬ_СЮДА_URL_ИЗ_GOOGLE_SHEETS') {
+                    console.error('❌ Google Sheets URL не настроен!');
+                    alert('⚠️ Отправка в таблицу не настроена! Свяжись с организатором.');
+                    return;
+                }
+
                 try {
                     const userName = document.getElementById('userNameInput')?.value || 'Не указано';
                     
@@ -134,7 +141,9 @@
                         source: 'Website'
                     };
 
-                    await fetch(GOOGLE_SCRIPT_URL, {
+                    console.log('📤 Отправляю данные:', data);
+
+                    const result = await fetch(GOOGLE_SCRIPT_URL, {
                         method: 'POST',
                         mode: 'no-cors',
                         headers: {
@@ -142,8 +151,10 @@
                         },
                         body: JSON.stringify(data)
                     });
+
+                    console.log('✅ Данные отправлены!');
                 } catch (error) {
-                    console.error('Error sending to Google Sheets:', error);
+                    console.error('❌ Ошибка отправки в Google Sheets:', error);
                 }
             };
 
@@ -253,7 +264,7 @@
 
                         .keycard {
                             position: absolute;
-                            bottom: ${stage === 'initial' ? `calc(13% + ${swipeY}px)` : stage === 'swiping' ? '48%' : '-30%'};
+                            bottom: ${stage === 'initial' ? `calc(18% + ${swipeY}px)` : stage === 'swiping' ? '45%' : '-30%'};
                             left: ${stage === 'initial' ? '50%' : stage === 'swiping' ? '71%' : '71%'};
                             transform: translateX(-50%) translateZ(0);
                             width: 100px;
@@ -292,7 +303,7 @@
                             position: absolute;
                             bottom: 12px;
                             right: 10px;
-                            width: 45px;
+                            width: 68px;
                             height: auto;
                         }
 
@@ -364,7 +375,7 @@
                                 rotateX(${['cardFallen', 'zoomed'].includes(stage) ? '0deg' : '80deg'})
                                 translateZ(0);
                             width: 510px;
-                            max-width: 94%;
+                            max-width: 85%;
                             background: linear-gradient(135deg, #1a1210 0%, #2a1810 100%);
                             border-radius: 22px;
                             box-shadow: 
@@ -476,7 +487,7 @@
                             position: absolute;
                             top: 22px;
                             right: 22px;
-                            width: 112px;
+                            width: 168px;
                             height: auto;
                             opacity: 0.85;
                         }
@@ -653,6 +664,7 @@
                         @media (max-width: 768px) {
                             .fallen-card {
                                 width: 460px;
+                                max-width: 90%;
                                 padding: 32px 26px 24px;
                             }
 
@@ -678,11 +690,11 @@
                             }
 
                             .brand-logo-card {
-                                width: 95px;
+                                width: 140px;
                             }
 
                             .card-logo {
-                                width: 40px;
+                                width: 58px;
                             }
 
                             .response-btn.yes .btn-circle {
@@ -708,6 +720,7 @@
                         @media (max-width: 480px) {
                             .fallen-card {
                                 width: 420px;
+                                max-width: 92%;
                                 padding: 28px 22px 20px;
                             }
 
@@ -733,11 +746,11 @@
                             }
 
                             .brand-logo-card {
-                                width: 85px;
+                                width: 130px;
                             }
 
                             .card-logo {
-                                width: 38px;
+                                width: 55px;
                             }
 
                             .response-btn.yes .btn-circle {
@@ -829,7 +842,7 @@
                             />
 
                             <div className="card-header">
-                                <div className="card-title">NOMER</div>
+                                <div className="card-title">HUBBY NEW YEAR</div>
                                 <div className="card-subtitle">Новогодний корпоратив</div>
                             </div>
 
