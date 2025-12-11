@@ -6,9 +6,9 @@
     <title>Influency Hub - Новогодний корпоратив в НОМЕРЕ</title>
     
     <!-- Preload критичных изображений -->
-    <link rel="preload" as="image" href="https://github.com/influencyhub/invitation/blob/main/door.png?raw=true">
-    <link rel="preload" as="image" href="https://github.com/influencyhub/invitation/blob/main/nomer.jpg?raw=true">
-    <link rel="preload" as="image" href="https://github.com/influencyhub/invitation/blob/main/_.png?raw=true">
+    <link rel="preload" as="image" href="https://raw.githubusercontent.com/influencyhub/invitation/main/door.png">
+    <link rel="preload" as="image" href="https://raw.githubusercontent.com/influencyhub/invitation/main/nomer.jpg">
+    <link rel="preload" as="image" href="https://raw.githubusercontent.com/influencyhub/invitation/main/_.png">
     
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -231,7 +231,7 @@
                             left: 0;
                             width: 100%;
                             height: 100%;
-                            background: url('https://github.com/influencyhub/invitation/blob/main/door.png?raw=true') 40% center/cover no-repeat;
+                            background: url('https://raw.githubusercontent.com/influencyhub/invitation/main/door.png') 40% center/cover no-repeat;
                             opacity: ${stage === 'initial' || stage === 'swiping' ? 1 : 0};
                             transition: opacity 1s;
                             z-index: 1;
@@ -343,7 +343,7 @@
                             left: 0;
                             width: 100%;
                             height: 100%;
-                            background: url('https://github.com/influencyhub/invitation/blob/main/door.png?raw=true') 40% center/cover no-repeat;
+                            background: url('https://raw.githubusercontent.com/influencyhub/invitation/main/door.png') 40% center/cover no-repeat;
                             transform-origin: left center;
                             transform: perspective(2000px) rotateY(${['doorOpen', 'cardFallen', 'zoomed'].includes(stage) ? '-125deg' : '0deg'});
                             transition: transform 1.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -358,7 +358,7 @@
                             left: 0;
                             width: 100%;
                             height: 100%;
-                            background: url('https://github.com/influencyhub/invitation/blob/main/nomer.jpg?raw=true') center/cover;
+                            background: url('https://raw.githubusercontent.com/influencyhub/invitation/main/nomer.jpg') center/cover;
                             opacity: ${['doorOpen', 'cardFallen', 'zoomed'].includes(stage) ? 1 : 0};
                             transition: opacity 0.8s ease-out;
                             z-index: 2;
@@ -838,7 +838,7 @@
                                 INFLUENCY<br/>HUB & NOMER
                             </div>
                             <img 
-                                src="https://github.com/influencyhub/invitation/blob/main/_.png?raw=true" 
+                                src="https://raw.githubusercontent.com/influencyhub/invitation/main/_.png" 
                                 alt="Logo" 
                                 className="card-logo"
                             />
@@ -846,7 +846,7 @@
 
                         <div className="fallen-card">
                             <img 
-                                src="https://github.com/influencyhub/invitation/blob/main/_.png?raw=true" 
+                                src="https://raw.githubusercontent.com/influencyhub/invitation/main/_.png" 
                                 alt="Influency Hub" 
                                 className="brand-logo-card"
                             />
